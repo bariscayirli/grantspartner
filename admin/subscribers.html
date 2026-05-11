@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Subscribers — Grants Partner Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-name">Grants Partner</span>
+      <span class="sidebar-brand-tag">Admin Panel</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <p class="nav-label">Data</p>
+        <a href="/admin/dashboard.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3A1.5 1.5 0 0115 10.5v3A1.5 1.5 0 0113.5 15h-3A1.5 1.5 0 019 13.5v-3z"/></svg>
+          Dashboard
+        </a>
+        <a href="/admin/subscribers.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm2-3a2 2 0 11-4 0 2 2 0 014 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+          Subscribers
+        </a>
+      </div>
+      <div class="nav-section">
+        <p class="nav-label">Content</p>
+        <a href="/admin/posts.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M14.5 3a.5.5 0 01.5.5v9a.5.5 0 01-.5.5h-13a.5.5 0 01-.5-.5v-9a.5.5 0 01.5-.5h13zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13zM3 5.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0 3a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0 3a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z"/></svg>
+          Blog Posts
+        </a>
+        <a href="/admin/site-pages.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 4a.5.5 0 000 1h6a.5.5 0 000-1H5zm-.5 2.5A.5.5 0 015 6h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5zM5 8a.5.5 0 000 1h6a.5.5 0 000-1H5zm0 2a.5.5 0 000 1h3a.5.5 0 000-1H5z"/><path d="M2 2a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm10-1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V2a1 1 0 00-1-1z"/></svg>
+          Pages
+        </a>
+        <a href="/admin/menu.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"/></svg>
+          Menu
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank">View live site</a>
+      <button id="logoutBtn">Sign out</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <span class="topbar-title">Subscribers</span>
+      <div class="topbar-actions">
+        <span id="totalLabel" style="font-size:13px;color:var(--soft)"></span>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="panel">
+        <div class="panel-body table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Name</th>
+                <th>Organisation</th>
+                <th>Email</th>
+                <th>Registered</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody">
+              <tr><td colspan="5" style="text-align:center;padding:40px;color:var(--soft)">Loading...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Pagination -->
+      <div id="pagination" style="display:flex;gap:10px;justify-content:center;margin-top:20px"></div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { requireLogin, logout, api, markActiveNav, formatDate } from './admin.js';
+  if (!requireLogin()) throw new Error('not logged in');
+  markActiveNav();
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+
+  let currentPage = 1;
+
+  async function load(page = 1) {
+    currentPage = page;
+    const res  = await api(`/api/admin/subscribers?page=${page}`);
+    if (!res) return;
+    const data = await res.json();
+
+    document.getElementById('totalLabel').textContent =
+      `${data.total} subscriber${data.total !== 1 ? 's' : ''}`;
+
+    const tbody = document.getElementById('tableBody');
+    if (!data.subscribers?.length) {
+      tbody.innerHTML = '<tr><td colspan="5" class="empty-state"><p>No subscribers yet.</p></td></tr>';
+      return;
+    }
+
+    tbody.innerHTML = data.subscribers.map((r, i) => `
+      <tr>
+        <td style="color:var(--soft)">${(page - 1) * 25 + i + 1}</td>
+        <td class="td-primary">${esc(r.name)}</td>
+        <td>${esc(r.organisation || '')}</td>
+        <td>${esc(r.email)}</td>
+        <td>${formatDate(r.created_at)}</td>
+      </tr>
+    `).join('');
+
+    // Pagination
+    const pg = document.getElementById('pagination');
+    pg.innerHTML = '';
+    if (data.pages > 1) {
+      for (let p = 1; p <= data.pages; p++) {
+        const btn = document.createElement('button');
+        btn.className = 'btn btn-ghost btn-sm';
+        btn.textContent = p;
+        if (p === page) btn.style.background = 'var(--navy)', btn.style.color = '#fff', btn.style.borderColor = 'var(--navy)';
+        btn.addEventListener('click', () => load(p));
+        pg.appendChild(btn);
+      }
+    }
+  }
+
+  function esc(s) {
+    return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  }
+
+  load();
+</script>
+</body>
+</html>

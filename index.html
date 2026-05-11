@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Grants Partner | Coming Soon</title>
+  <meta name="description" content="Grants Partner: EU grant management and consultancy for NGOs and public organisations. Launching soon." />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:      #0B1D35;
+      --text:      #1D1D1F;
+      --mid:       #515154;
+      --soft:      #86868B;
+      --border:    #D2D2D7;
+      --bg:        #FBFBFD;
+      --focus:     #0066CC;
+      --success-fg: #1A6B47;
+      --success-bg: #F0FAF5;
+      --success-bd: #B7DFD0;
+      --error-fg:  #C0392B;
+      --error-bg:  #FFF5F5;
+      --error-bd:  #FECACA;
+
+      --font: system-ui, -apple-system, BlinkMacSystemFont,
+              'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+    }
+
+    html, body { height: 100%; overflow: hidden; }
+
+    body {
+      font-family: var(--font);
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* ── Skip link ── */
+    .skip-link {
+      position: absolute;
+      top: -100%;
+      left: 16px;
+      z-index: 9999;
+      background: var(--navy);
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 500;
+      text-decoration: none;
+      border-radius: 6px;
+    }
+    .skip-link:focus { top: 16px; }
+
+    /* ── Focus ── */
+    :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
+    :focus:not(:focus-visible) { outline: none; }
+
+    /* ── Top rule ── */
+    .top-rule { height: 3px; background: var(--navy); flex-shrink: 0; }
+
+    /* ── Header ── */
+    header {
+      position: absolute;
+      top: 3px; /* sit just below the top rule */
+      left: 0;
+      right: 0;
+      z-index: 10;
+      padding: 28px 48px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: transparent;
+    }
+
+    .brand {
+      font-size: 17px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      color: var(--navy);
+    }
+
+    .status {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--mid);
+      letter-spacing: 0.01em;
+    }
+
+    /* ── Main ── */
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Video banner ── */
+    .video-banner {
+      width: 100%;
+      height: 42vh;
+      overflow: hidden;
+      flex-shrink: 0;
+      position: relative;
+    }
+
+    .video-banner video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 52%;
+    }
+
+    .video-banner::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 140px;
+      background: linear-gradient(to bottom, transparent 0%, var(--bg) 100%);
+      pointer-events: none;
+    }
+
+    /* ── Content row ── */
+    .content-row {
+      flex: 1;
+      display: flex;
+      align-items: flex-start;
+      gap: 64px;
+      padding: 36px 8% 0;
+      min-height: 0;
+      width: 100%;
+    }
+
+    /* ── Left col: headline + subtext ── */
+    .left-col {
+      flex: 1;
+      min-width: 0;
+      padding-top: 8px;
+    }
+
+    /* ── Right col: form ── */
+    .right-col {
+      flex: 0 0 360px;
+    }
+
+    /* ── Headline ── */
+    h1 {
+      font-size: clamp(28px, 3vw, 46px);
+      font-weight: 700;
+      line-height: 1.06;
+      letter-spacing: -0.03em;
+      color: var(--navy);
+      margin-bottom: 20px;
+    }
+
+    .subtext {
+      font-size: clamp(15px, 1.4vw, 18px);
+      font-weight: 400;
+      line-height: 1.7;
+      color: var(--mid);
+      margin-bottom: 0;
+    }
+
+    /* ── Form ── */
+    form {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+
+    .field { display: flex; flex-direction: column; gap: 0; }
+
+    input[type="text"],
+    input[type="email"] {
+      width: 100%;
+      padding: 11px 14px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text);
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      appearance: none;
+      transition: border-color 0.15s, box-shadow 0.15s;
+    }
+
+    input[type="text"]::placeholder,
+    input[type="email"]::placeholder {
+      color: var(--soft);
+    }
+
+    input[type="text"]:focus,
+    input[type="email"]:focus {
+      outline: none;
+      border-color: var(--navy);
+      box-shadow: 0 0 0 3px rgba(11, 29, 53, 0.1);
+    }
+
+    input[aria-invalid="true"] {
+      border-color: var(--error-fg);
+    }
+
+    .field-error {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--error-fg);
+      padding: 5px 4px 0;
+      min-height: 18px;
+      text-align: left;
+    }
+
+    /* Consent */
+    .consent-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      text-align: left;
+      padding: 4px 0;
+    }
+
+    input[type="checkbox"] {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
+      margin-top: 2px;
+      accent-color: var(--navy);
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    .consent-text {
+      font-size: 13px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    .consent-text a {
+      color: var(--navy);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .consent-error {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--error-fg);
+      text-align: left;
+      padding: 0 0 0 28px;
+      min-height: 16px;
+    }
+
+    /* Submit */
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      font-family: var(--font);
+      font-size: 15px;
+      font-weight: 600;
+      letter-spacing: -0.01em;
+      color: #fff;
+      background: var(--navy);
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      transition: opacity 0.15s;
+      margin-top: 4px;
+    }
+
+    .submit-btn:hover:not(:disabled) { opacity: 0.85; }
+    .submit-btn:disabled { opacity: 0.45; cursor: not-allowed; }
+
+    /* Status message */
+    .form-status {
+      font-size: 14px;
+      font-weight: 500;
+      padding: 13px 16px;
+      border-radius: 10px;
+      display: none;
+      text-align: left;
+      line-height: 1.5;
+    }
+    .form-status.success {
+      display: block;
+      color: var(--success-fg);
+      background: var(--success-bg);
+      border: 1px solid var(--success-bd);
+    }
+    .form-status.error {
+      display: block;
+      color: var(--error-fg);
+      background: var(--error-bg);
+      border: 1px solid var(--error-bd);
+    }
+
+    /* Data note */
+    .data-note {
+      margin-top: 14px;
+      font-size: 12px;
+      color: var(--soft);
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .data-note a {
+      color: var(--mid);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    /* ── Footer ── */
+    footer {
+      padding: 10px 48px;
+      border-top: 1px solid rgba(0,0,0,0.07);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+      gap: 12px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      color: var(--soft);
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 20px;
+    }
+
+    .footer-links a {
+      font-size: 11px;
+      color: var(--soft);
+      text-decoration: none;
+    }
+
+    .footer-links a:hover { color: var(--mid); }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      html, body { overflow: auto; }
+      .content-row { flex-direction: column; align-items: stretch; padding: 32px; gap: 32px; }
+      .right-col { flex: none; }
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 20px 24px; }
+      .video-banner { height: 32vh; }
+      .content-row { padding: 24px 20px; }
+      footer { padding: 12px 24px; flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <div class="top-rule" role="presentation"></div>
+
+  <header>
+    <span class="brand">Grants Partner</span>
+    <span class="status">Coming soon</span>
+  </header>
+
+  <main id="main">
+
+    <div class="video-banner">
+      <video autoplay muted loop playsinline>
+        <source src="grantspartner-hero-landing.mp4" type="video/mp4" />
+      </video>
+    </div>
+
+    <div class="content-row">
+
+      <div class="left-col">
+        <h1>EU grants, handled properly.</h1>
+        <p class="subtext">
+          We support NGOs, public bodies, and organisations across Europe
+          through every stage of the grant cycle. From identifying the right
+          opportunity to closing the final report, we are with you throughout.
+        </p>
+      </div>
+
+      <div class="right-col">
+      <form id="interestForm" novalidate>
+
+        <div class="field">
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Full name"
+            autocomplete="name"
+            required
+            aria-required="true"
+            aria-label="Full name"
+            aria-describedby="name-error"
+          />
+          <span class="field-error" id="name-error" role="alert"></span>
+        </div>
+
+        <div class="field">
+          <input
+            type="text"
+            id="org"
+            name="organisation"
+            placeholder="Organisation (optional)"
+            autocomplete="organization"
+            aria-label="Organisation"
+          />
+        </div>
+
+        <div class="field">
+          <input
+            type="email"
+            id="email"
+            name="email"
+            placeholder="Email address"
+            autocomplete="email"
+            required
+            aria-required="true"
+            aria-label="Email address"
+            aria-describedby="email-error"
+          />
+          <span class="field-error" id="email-error" role="alert"></span>
+        </div>
+
+        <div>
+          <label class="consent-row">
+            <input
+              type="checkbox"
+              id="consent"
+              name="consent"
+              required
+              aria-required="true"
+              aria-describedby="consent-error"
+            />
+            <span class="consent-text">
+              I agree that Grants Partner may contact me with launch updates and
+              information about their services. I can withdraw consent at any time by
+              writing to
+              <a href="mailto:hello@grantspartner.com">hello@grantspartner.com</a>.
+              See our <a href="/privacy.html">Privacy Policy</a>.
+            </span>
+          </label>
+          <p class="consent-error" id="consent-error" role="alert"></p>
+        </div>
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          Register interest
+        </button>
+
+        <div
+          class="form-status"
+          id="formStatus"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true"
+        ></div>
+
+      </form>
+
+      <p class="data-note">
+        Your data is stored in the EU and never shared with third parties.
+        See our <a href="/privacy.html">Privacy Policy</a> for full details.
+      </p>
+
+      </div><!-- /right-col -->
+    </div><!-- /content-row -->
+  </main>
+
+  <footer>
+    <p class="footer-copy">&copy; 2025 Grants Partner. All rights reserved.</p>
+    <nav aria-label="Footer navigation">
+      <div class="footer-links">
+        <a href="/privacy.html">Privacy Policy</a>
+        <a href="mailto:hello@grantspartner.com">hello@grantspartner.com</a>
+      </div>
+    </nav>
+  </footer>
+
+  <script>
+    const form = document.getElementById('interestForm');
+    const btn  = document.getElementById('submitBtn');
+    const msg  = document.getElementById('formStatus');
+
+    function clearErrors() {
+      ['name-error','email-error','consent-error'].forEach(id => {
+        document.getElementById(id).textContent = '';
+      });
+      ['name','email'].forEach(id => {
+        document.getElementById(id).removeAttribute('aria-invalid');
+      });
+    }
+
+    function validate() {
+      let ok = true;
+      const name    = document.getElementById('name').value.trim();
+      const email   = document.getElementById('email').value.trim();
+      const consent = document.getElementById('consent').checked;
+
+      if (name.length < 2) {
+        document.getElementById('name-error').textContent = 'Please enter your full name.';
+        document.getElementById('name').setAttribute('aria-invalid','true');
+        ok = false;
+      }
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+        document.getElementById('email-error').textContent = 'Please enter a valid email address.';
+        document.getElementById('email').setAttribute('aria-invalid','true');
+        ok = false;
+      }
+      if (!consent) {
+        document.getElementById('consent-error').textContent =
+          'You must agree before registering.';
+        ok = false;
+      }
+      return ok;
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      clearErrors();
+      msg.className = 'form-status';
+      msg.textContent = '';
+      if (!validate()) return;
+
+      btn.disabled = true;
+      btn.textContent = 'Sending…';
+
+      try {
+        const res = await fetch('/api/subscribe', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            name: document.getElementById('name').value.trim(),
+            organisation: document.getElementById('org').value.trim(),
+            email: document.getElementById('email').value.trim(),
+          }),
+        });
+        const data = await res.json();
+        if (res.ok) {
+          msg.className = 'form-status success';
+          msg.textContent = 'Thank you. We have noted your interest and will be in touch.';
+          form.reset();
+        } else if (res.status === 409) {
+          msg.className = 'form-status error';
+          msg.textContent = 'This email is already registered. We will be in touch.';
+        } else {
+          throw new Error();
+        }
+      } catch {
+        msg.className = 'form-status error';
+        msg.textContent = 'Something went wrong. Please try again or email us directly.';
+      } finally {
+        btn.disabled = false;
+        btn.textContent = 'Register interest';
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,8 @@
+name = "grantspartner"
+compatibility_date = "2024-01-01"
+pages_build_output_dir = "."
+
+[[d1_databases]]
+binding = "DB"
+database_name = "grantspartner-db"
+database_id = "f5953efe-e92b-4e47-a2c6-2460088c8656"

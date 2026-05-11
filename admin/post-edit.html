@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Post — Grants Partner Admin</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="stylesheet" href="/admin/admin.css" />
+  <style>
+    .topbar-center {
+      font-size: 13px;
+      color: var(--soft);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .save-indicator {
+      font-size: 11px;
+      color: var(--soft);
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+<div class="admin-layout">
+  <aside class="sidebar">
+    <div class="sidebar-brand">
+      <span class="sidebar-brand-name">Grants Partner</span>
+      <span class="sidebar-brand-tag">Admin Panel</span>
+    </div>
+    <nav class="sidebar-nav">
+      <div class="nav-section">
+        <p class="nav-label">Data</p>
+        <a href="/admin/dashboard.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M1 2.5A1.5 1.5 0 012.5 1h3A1.5 1.5 0 017 2.5v3A1.5 1.5 0 015.5 7h-3A1.5 1.5 0 011 5.5v-3zm8 0A1.5 1.5 0 0110.5 1h3A1.5 1.5 0 0115 2.5v3A1.5 1.5 0 0113.5 7h-3A1.5 1.5 0 019 5.5v-3zm-8 8A1.5 1.5 0 012.5 9h3A1.5 1.5 0 017 10.5v3A1.5 1.5 0 015.5 15h-3A1.5 1.5 0 011 13.5v-3zm8 0A1.5 1.5 0 0110.5 9h3A1.5 1.5 0 0115 10.5v3A1.5 1.5 0 0113.5 15h-3A1.5 1.5 0 019 13.5v-3z"/></svg>
+          Dashboard
+        </a>
+        <a href="/admin/subscribers.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M8 8a3 3 0 100-6 3 3 0 000 6zm2-3a2 2 0 11-4 0 2 2 0 014 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/></svg>
+          Subscribers
+        </a>
+      </div>
+      <div class="nav-section">
+        <p class="nav-label">Content</p>
+        <a href="/admin/posts.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M14.5 3a.5.5 0 01.5.5v9a.5.5 0 01-.5.5h-13a.5.5 0 01-.5-.5v-9a.5.5 0 01.5-.5h13zm-13-1A1.5 1.5 0 000 3.5v9A1.5 1.5 0 001.5 14h13a1.5 1.5 0 001.5-1.5v-9A1.5 1.5 0 0014.5 2h-13zM3 5.5a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0 3a.5.5 0 01.5-.5h9a.5.5 0 010 1h-9a.5.5 0 01-.5-.5zm0 3a.5.5 0 01.5-.5h5a.5.5 0 010 1h-5a.5.5 0 01-.5-.5z"/></svg>
+          Blog Posts
+        </a>
+        <a href="/admin/site-pages.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path d="M5 4a.5.5 0 000 1h6a.5.5 0 000-1H5zm-.5 2.5A.5.5 0 015 6h6a.5.5 0 010 1H5a.5.5 0 01-.5-.5zM5 8a.5.5 0 000 1h6a.5.5 0 000-1H5zm0 2a.5.5 0 000 1h3a.5.5 0 000-1H5z"/><path d="M2 2a2 2 0 012-2h8a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V2zm10-1H4a1 1 0 00-1 1v12a1 1 0 001 1h8a1 1 0 001-1V2a1 1 0 00-1-1z"/></svg>
+          Pages
+        </a>
+        <a href="/admin/menu.html" class="nav-item">
+          <svg viewBox="0 0 16 16" fill="currentColor"><path fill-rule="evenodd" d="M2.5 12a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5zm0-4a.5.5 0 01.5-.5h10a.5.5 0 010 1H3a.5.5 0 01-.5-.5z"/></svg>
+          Menu
+        </a>
+      </div>
+    </nav>
+    <div class="sidebar-footer">
+      <a href="/" target="_blank">View live site</a>
+      <button id="logoutBtn">Sign out</button>
+    </div>
+  </aside>
+
+  <div class="main">
+    <header class="topbar">
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="/admin/posts.html" class="btn btn-ghost btn-sm">Back</a>
+        <span class="topbar-title" id="pageHeading">New Post</span>
+      </div>
+      <div class="topbar-actions">
+        <span class="save-indicator" id="saveIndicator"></span>
+        <button class="btn btn-ghost" id="saveDraftBtn">Save draft</button>
+        <button class="btn btn-success" id="publishBtn">Publish</button>
+      </div>
+    </header>
+
+    <div class="content">
+      <div class="alert" id="alertMsg"></div>
+
+      <div class="editor-layout">
+        <!-- Main editor -->
+        <div class="editor-main">
+          <input
+            type="text"
+            class="editor-title-input"
+            id="titleInput"
+            placeholder="Post title"
+            autocomplete="off"
+          />
+
+          <!-- Write / Preview tabs -->
+          <div class="toolbar-tabs">
+            <button class="tab-btn active" id="writeTab">Write</button>
+            <button class="tab-btn" id="previewTab">Preview</button>
+          </div>
+
+          <!-- Formatting toolbar -->
+          <div class="toolbar" id="editorToolbar">
+            <button class="toolbar-btn" title="Bold" data-before="**" data-after="**"><b>B</b></button>
+            <button class="toolbar-btn" title="Italic" data-before="*" data-after="*"><i>I</i></button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" title="Heading 2" data-before="## ">H2</button>
+            <button class="toolbar-btn" title="Heading 3" data-before="### ">H3</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" title="Link" data-before="[" data-after="](url)">[L]</button>
+            <button class="toolbar-btn" title="Blockquote" data-before="> ">" "</button>
+            <button class="toolbar-btn" title="Code" data-before="`" data-after="`">&lt;/&gt;</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" title="Bullet list" data-before="- ">• List</button>
+            <button class="toolbar-btn" title="Numbered list" data-before="1. ">1. List</button>
+            <div class="toolbar-sep"></div>
+            <button class="toolbar-btn" title="Horizontal rule" data-before="&#10;---&#10;">HR</button>
+          </div>
+
+          <div class="editor-content-area">
+            <textarea
+              class="editor-textarea"
+              id="contentArea"
+              placeholder="Write your post content here using Markdown...
+
+# Heading 1
+## Heading 2
+
+**Bold text** and *italic text*
+
+- Bullet point
+- Another point
+
+[Link text](https://example.com)"
+            ></textarea>
+            <div class="preview-pane" id="previewPane"></div>
+          </div>
+        </div>
+
+        <!-- Right sidebar -->
+        <div class="editor-sidebar">
+          <!-- Status -->
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">Status</div>
+            <div class="sidebar-card-body">
+              <div class="status-strip">
+                <div class="status-dot status-dot-draft" id="statusDot"></div>
+                <span id="statusLabel">Draft</span>
+              </div>
+              <div style="font-size:12px;color:var(--soft)" id="publishedInfo"></div>
+            </div>
+          </div>
+
+          <!-- URL slug -->
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">URL Slug</div>
+            <div class="sidebar-card-body">
+              <label class="form-label" for="slugInput">grantspartner.com/blog/</label>
+              <input type="text" id="slugInput" placeholder="post-url-slug" />
+              <p class="form-hint">Auto-generated from title. Edit if needed.</p>
+            </div>
+          </div>
+
+          <!-- Excerpt -->
+          <div class="sidebar-card">
+            <div class="sidebar-card-title">Excerpt</div>
+            <div class="sidebar-card-body">
+              <textarea id="excerptInput" style="min-height:80px;font-size:13px" placeholder="Short summary shown in post listings..."></textarea>
+              <p class="form-hint">Optional. 1-2 sentences.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="module">
+  import { requireLogin, logout, api, markActiveNav, showAlert, makeSlug, mdToHtml, insertMd, formatDate } from './admin.js';
+  if (!requireLogin()) throw new Error('not logged in');
+  markActiveNav();
+  document.getElementById('logoutBtn').addEventListener('click', logout);
+
+  const params = new URLSearchParams(location.search);
+  const postId = params.get('id');
+
+  const titleInput   = document.getElementById('titleInput');
+  const contentArea  = document.getElementById('contentArea');
+  const slugInput    = document.getElementById('slugInput');
+  const excerptInput = document.getElementById('excerptInput');
+  const alertMsg     = document.getElementById('alertMsg');
+  const saveIndicator = document.getElementById('saveIndicator');
+  const statusDot    = document.getElementById('statusDot');
+  const statusLabel  = document.getElementById('statusLabel');
+  const publishedInfo = document.getElementById('publishedInfo');
+  const pageHeading  = document.getElementById('pageHeading');
+
+  let currentStatus = 'draft';
+  let slugEdited = false;
+
+  // Load existing post
+  if (postId) {
+    pageHeading.textContent = 'Edit Post';
+    api(`/api/admin/posts/${postId}`).then(async res => {
+      if (!res) return;
+      const p = await res.json();
+      titleInput.value   = p.title;
+      contentArea.value  = p.content;
+      slugInput.value    = p.slug;
+      excerptInput.value = p.excerpt || '';
+      slugEdited = true;
+      setStatus(p.status);
+      if (p.published_at) {
+        publishedInfo.textContent = `Published ${formatDate(p.published_at)}`;
+      }
+    });
+  }
+
+  function setStatus(s) {
+    currentStatus = s;
+    statusLabel.textContent = s === 'published' ? 'Published' : 'Draft';
+    statusDot.className = `status-dot status-dot-${s}`;
+    document.getElementById('publishBtn').textContent =
+      s === 'published' ? 'Update' : 'Publish';
+  }
+
+  // Auto-slug from title
+  titleInput.addEventListener('input', () => {
+    if (!slugEdited) slugInput.value = makeSlug(titleInput.value);
+  });
+
+  slugInput.addEventListener('input', () => { slugEdited = true; });
+
+  // Tabs
+  const writeTab   = document.getElementById('writeTab');
+  const previewTab = document.getElementById('previewTab');
+  const previewPane = document.getElementById('previewPane');
+  const toolbar    = document.getElementById('editorToolbar');
+
+  writeTab.addEventListener('click', () => {
+    writeTab.classList.add('active');
+    previewTab.classList.remove('active');
+    contentArea.style.display = '';
+    toolbar.style.display = '';
+    previewPane.style.display = 'none';
+  });
+
+  previewTab.addEventListener('click', () => {
+    previewTab.classList.add('active');
+    writeTab.classList.remove('active');
+    contentArea.style.display = 'none';
+    toolbar.style.display = 'none';
+    previewPane.style.display = 'block';
+    previewPane.innerHTML = mdToHtml(contentArea.value) || '<p style="color:var(--soft)">Nothing to preview yet.</p>';
+  });
+
+  // Toolbar
+  toolbar.querySelectorAll('.toolbar-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      insertMd(contentArea, btn.dataset.before || '', btn.dataset.after || '');
+    });
+  });
+
+  // Save helpers
+  function getPayload(status) {
+    return {
+      title:    titleInput.value.trim(),
+      slug:     slugInput.value.trim() || makeSlug(titleInput.value),
+      content:  contentArea.value,
+      excerpt:  excerptInput.value.trim(),
+      status,
+    };
+  }
+
+  async function save(status) {
+    const payload = getPayload(status);
+    if (!payload.title) {
+      showAlert(alertMsg, 'error', 'Please enter a title before saving.');
+      return;
+    }
+
+    const btn = status === 'published'
+      ? document.getElementById('publishBtn')
+      : document.getElementById('saveDraftBtn');
+    btn.disabled = true;
+    saveIndicator.textContent = 'Saving...';
+
+    let res;
+    if (postId) {
+      res = await api(`/api/admin/posts/${postId}`, {
+        method: 'PUT',
+        body: JSON.stringify(payload),
+      });
+    } else {
+      res = await api('/api/admin/posts', {
+        method: 'POST',
+        body: JSON.stringify(payload),
+      });
+    }
+
+    btn.disabled = false;
+
+    if (!res) return;
+    const data = await res.json();
+
+    if (res.ok) {
+      setStatus(status);
+      saveIndicator.textContent = `Saved ${new Date().toLocaleTimeString()}`;
+      showAlert(alertMsg, 'success',
+        status === 'published' ? 'Post published successfully.' : 'Draft saved.');
+
+      // Update URL if new post was created
+      if (!postId && data.id) {
+        history.replaceState({}, '', `/admin/post-edit.html?id=${data.id}`);
+        pageHeading.textContent = 'Edit Post';
+      }
+      if (data.slug) slugInput.value = data.slug;
+    } else {
+      showAlert(alertMsg, 'error', data.error || 'Failed to save. Please try again.');
+    }
+  }
+
+  document.getElementById('saveDraftBtn').addEventListener('click', () => save('draft'));
+  document.getElementById('publishBtn').addEventListener('click', () =>
+    save(currentStatus === 'published' ? 'published' : 'published')
+  );
+</script>
+</body>
+</html>
