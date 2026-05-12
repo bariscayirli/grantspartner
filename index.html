@@ -59,13 +59,10 @@
     :focus-visible { outline: 2px solid var(--focus); outline-offset: 3px; }
     :focus:not(:focus-visible) { outline: none; }
 
-    /* ── Top rule ── */
-    .top-rule { height: 3px; background: var(--navy); flex-shrink: 0; }
-
     /* ── Header ── */
     header {
       position: absolute;
-      top: 3px; /* sit just below the top rule */
+      top: 0;
       left: 0;
       right: 0;
       z-index: 10;
@@ -359,7 +356,6 @@
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to main content</a>
-  <div class="top-rule" role="presentation"></div>
 
   <header>
     <span class="brand">Grants Partner</span>
